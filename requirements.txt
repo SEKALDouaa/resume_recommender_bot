@@ -9,6 +9,7 @@ charset-normalizer==3.4.2
 click==8.2.1
 colorama==0.4.6
 distro==1.9.0
+dotenv==0.9.9
 faiss-cpu==1.11.0
 filelock==3.18.0
 fsspec==2025.5.1

@@ -20,6 +20,7 @@ venv/
 ENV/
 *.env
 .env.*
+.env
 
 # === Jupyter Notebooks (optional) ===
 .ipynb_checkpoints/
