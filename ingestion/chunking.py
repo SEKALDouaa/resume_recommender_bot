@@ -1,11 +1,42 @@
+import difflib
+import re
+import json
 
-text = 'TAYLOR FOSTER\nBig Data Scientist\n\n1-324-677-8914 taylor51@gmail.com colossal-mattress.org\nNorth Milanworth, Greece\n\nSUMMARY\n\nExperienced Big Data Scientist with 10+ years of experience in ingesting,\nstoring, processing, and analyzing large datasets. Skilled in developing\nscalable data solutions, optimizing data processing efficiency, and\nleveraging industry-leading tools like Tableau and R for data visualization.\nProficient in Java, Scala, and Spark, with expertise in AWS cloud platform.\nStrong problem-solving and collaboration abilities, demonstrated through\nsuccessful project outcomes and mentoring junior team members. Master\nof Science in Data Science from the University of California, Berkeley. Most\nproud of developing an automated data cleansing tool and deploying a real-\ntime fraud detection system resulting in significant cost savings. Passionate\nabout unlocking the hidden value of data to drive innovation.\n\nEXPERIENCE\n\nSenior Data Engineer 2022 - Ongoing\n\nTech Innovators San Francisco, CA\n\nLed the development and implementation of data pipelines, resulting in a 30%\n\nincrease in data processing efficiency.\n\n* Collaborated with cross-functional teams to understand business\nrequirements and design scalable data solutions.\n\n* Optimized data storage and processing techniques, reducing resource\nutilization by 20%.\n\n* Mentored junior engineers, providing technical guidance and training to\nenhance their skills and productivity.\n\nData Scientist 2017 - 2022\n\nData Analytics Inc. New York, NY\n\nPerformed extensive data analysis and modeling, resulting in improved insights\n\nand data-driven decision-making.\n\n* Developed and implemented machine learning algorithms to predict customer\nbehavior, increasing revenue by 15%.\n\n* Collaborated with stakeholders to identify and define key performance\nindicators, aligning analytics goals with business objectives.\n\n* Utilized Tableau to create interactive visualizations, facilitating the\ncommunication of complex data insights.\n\nPowered by (CX? Enhancu\n\nwww.enhancv.com\n\nY LIFE PHILOSOPHY\n\nData is the new gold. As a Big\nData Scientist, | strive to\nunlock its hidden value and\ndrive data-powered\ninnovation.\n\nSTRENGTHS\n\n® Problem Solving\n\nExperienced in identifying\ncomplex issues and\ndeveloping innovative\nsolutions resulting in\nimproved data analysis and\nefficiency.\n\nCollaboration\n\nProven ability to work\ncollaboratively with cross-\nfunctional teams, providing\nvaluable insights and driving\nsuccessful project outcomes.\n\nAdaptability\n\nDemonstrated flexibility in\nadapting to new technologies\nand evolving business needs,\nensuring the delivery of high-\nquality data solutions.\n\nSKILLS\n\nBig Data Technologies - Java-\nScala - Spark - Data Warehousing -\nData Modeling: Tableau: R -\nAWS - Kafka - Core Java: Scripting\n\n'
+with open(r"C:\Dev\resume_recommender_bot\data\job_positions\job_titles.json", "r", encoding="utf-8") as f:
+    known_titles = json.load(f)
+
+if isinstance(known_titles, dict) and "job-titles" in known_titles:
+    known_titles = [title.lower().strip() for title in known_titles["job-titles"]]
+else:
+    raise ValueError("Expected a dictionary with a 'titles' key containing a list.") 
+
+text = 'David Villatoro\n\nWeb Designer / Developer with 5 years of experience in the design and development of innovative\nstaticand dynamic websites using current W3C standards of coding. Additional experience in the use of\ncontent management systems toallow clients toupdate content on their websites. Very strong,\n‘organizational, presentational, and communication sill to help plan out and pitch different web user\nInterface styles that suited the cient’ needs.\n\nEDUCATION\nBA in Interactive Entertainment, Minor in 3D Animation - Unversity of Southern California, 2008\nTECHNICAL skis\nWeb Programming\nXHTML, CSS, Javascrit, jQuery, XML/RSS Feed, PHP, MySQL, Actionscript 3.0 Light HFML5/CSS3\nSoftware\n\n‘Adobe Dreamweaver C55, Adobe Photoshop CSS, Adobe Flash CSS,\n\n‘Content Management Systems\nWordpress, Joomla, Adobe C5, Jive\n\nOther Relevant Sills\nLeadership, Organization, Communication, Self-motivated, Team oriented, Productivity, Problem.\nsolving sil, Blingual (English and Spanish)\n\nEXPERIENCE\n\nFront End Web Developer, Activision] Blizzard March 2012 ~Present\n\n> Developed websites with Adobe CO allowing the developing team to create reusable\n‘components that can be easily used to build outthe sites.\n> Used Jive to develop custom themes that would be applied to community forums and blogs\n\n‘WebDeveloper, Unbutton it ‘April 2011 ~ October 2011\n\n> Collaborated witha web designer to program the entire site using XHTML, CSS, PHP, MySQl,\n‘and jQuery from PSD files.\n\n> Developed a custom shopping cart system to receive transactions from customers which can\nbe viewed from a custom made content management system made for the dient.\n'
 
 lines = [line.strip() for line in text.split('\n') if line.strip()]
 
 # for line in lines: 
 #     print(line)
 #     print('')
+
+def is_known_section (line, cutoff= 0.8):
+    known_sections = {
+        "WORK EXPERIENCE", "CONTACT", "SKILLS","TECHNICAL SKILLS", "EDUCATION", "OTHER", "PROJECTS",
+        "EXPERIENCE", "CERTIFICATIONS", "LANGUAGES", "SUMMARY", "OBJECTIVE", "STRENGTHS", "MY LIFE PHILISOPHY"
+    }
+    match = difflib.get_close_matches(line.upper(), known_sections, n=1, cutoff=cutoff)
+    return match[0] if match else None
+
+def is_noise (line):
+    noise_keywords = ["powered by", "enhancv", "resume.io", "novoresume", "cv builder", "zety"]
+    line_lower = line.lower().strip()
+
+    if re.fullmatch (r"https?://\S+", line.strip()) and not any (domain in line_lower for domain in ["github", "linkedin"]):
+        return True
+    
+    if any(keyword in line_lower for keyword in noise_keywords):
+        return True
+
+    return False            
 
 def normalize_bullets(line):
     bullets = ['•', '-', '–', '*', '»', '+', '©', 'e ', '_']
@@ -23,26 +54,62 @@ def is_title(line):
         is_title = True
     return is_title
 
-def extract_sections(lines):
-    sections = {}
-    sections["Name"] = lines[0] 
-    current_title = "Personal Information"
-    sections[current_title] = []
-    for line in lines[1:]:
-        if is_title(line):
-            current_title = line 
-            sections[current_title] = []
+def flush (structure, section, subsection, buffer):
+    '''puts any content in the buffer into its right place in the structure'''
+    if not buffer: 
+        return
+    
+    if section not in structure: 
+        structure[section] = []
+    
+    if isinstance(structure[section], list):
+        structure[section].append(buffer)
+    
+    elif isinstance(structure[section], dict):
+        if subsection :
+            if subsection not in structure[section]:
+                structure[section][subsection] = []
+            structure[section][subsection].append(buffer)
+
         else:
-            sections[current_title].append(line)
+            structure[section]["UNKNOWN"] = buffer
 
-    return sections
+def extract_structure(lines):
+    structure = {}
+    current_section = "Personal Information"
+    current_subsection = None
+    buffer = []
 
-sectionned_lines = extract_sections(lines)
+    for line in lines:
+        if is_noise(line):
+            continue
+        if is_title(line):
+            matched_section = is_known_section(line)
+
+            if matched_section:
+                flush(structure, current_section, current_subsection, buffer)
+                current_section = matched_section
+                current_subsection = None
+                buffer = []
+                structure[current_section] = {}
+        
+            else:
+                flush(structure, current_section, current_subsection, buffer)
+                current_subsection = line
+                buffer = []
+
+        else:
+            buffer.append(line)
+        
+    flush(structure, current_section, current_subsection, buffer)
+    return structure
 
 def merge_lines(lines):
     merged = []
     buffer = ""
     for line in lines:
+        if is_noise(line):
+            continue
         line = line.strip()
         if not line:
             continue
@@ -57,118 +124,159 @@ def merge_lines(lines):
         merged.append(buffer)
     return merged
 
-for section, content in sectionned_lines.items():
-    if isinstance(content, list):
-        sectionned_lines[section] = merge_lines(content)
+def recursive_merge(content):
+    if isinstance(content, dict):
+        for key, val in content.items():
+            content[key] = recursive_merge(val)
+        return content
+    elif isinstance(content, list):
+        if content and all(isinstance(item, list) for item in content):
+            return [merge_lines(block) for block in content]
+        else:
+            return merge_lines(content)
+    else:
+        return content
+    
+refined_sectionned_lines = extract_structure(lines)    
+refined_sectionned_lines = recursive_merge(refined_sectionned_lines)
 
-# i = 0
-# for section, content in sectionned_lines.items():
-#     print(f"{section}: {i}")
-#     if isinstance(content, str):
-#         print(f"  {content}")
-#     else:
-#         for line in content:
-#             print(f"  {line}")
-#         print("")
-#     i += 1
+def extract_dates(line):
+    MONTHS = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+]
+    normalized_line = line.strip()
+    pattern_full = re.compile(
+            r"\b(" + "|".join(MONTHS) + r")\s(\d{4})\s*(?:-|–|to)\s*(?:" +
+            r"(" + "|".join(MONTHS) + r")\s(\d{4})|(?P<end_open>Present|Ongoing))\b",
+            re.IGNORECASE
+        )
+    pattern_year_only = re.compile(r"\b(\d{4})\s*(?:-|–|to)\s*(\d{4}|Present|Ongoing)\b", re.IGNORECASE)
+    match1 = pattern_full.search(normalized_line)
+    if match1:
+        return {
+            "start month": match1.group(1),
+            "start year": match1.group(2),
+            "end month": match1.group(3) or match1.group("end_open"),
+            "end year": match1.group(4) or None
+        }
+    match2 = pattern_year_only.search(normalized_line)
+    if match2:
+        return{
+        "start month": None,
+        "start year": match2.group(1),
+        "end month": None,
+        "end year": match2.group(2) or None
+        }
+    
+def find_job_title(line, cutoff=0.8):
+    line = line.lower().strip()
+    print("🔍 Trying to match line:", repr(line))
+    match = difflib.get_close_matches(line, known_titles, n=1, cutoff=cutoff)
+    print("🎯 Match:", match)    
+    return match[0] if match else None
 
-def extract_subsections(sectionned_lines):
-    known_subsections = { "WORK EXPERIENCE", "CONTACT", "SKILLS", "EDUCATION", "OTHER", "PROJECTS",
-        "EXPERIENCE", "CERTIFICATIONS", "LANGUAGES", "SUMMARY", "OBJECTIVE" }
-    refined_subsections = {}
-    for section, content in sectionned_lines.items():
+def process_block(block):
+    entry = { 
+        "position" : None, "company" : None, "dates" : None, "description" : []
+    }
 
-        if not isinstance(content, list):
-            refined_subsections[section] = content
-            continue
+    if not block: 
+        return None
+    date_pattern = re.compile(
+            r"\b(?:January|February|March|April|May|June|July|August|September|October|November|December)?\s*\d{4}\s*(?:-|–|to)\s*(?:\b(?:January|February|March|April|May|June|July|August|September|October|November|December)?\s*\d{4}|Present|Ongoing)\b",
+            re.IGNORECASE
+        )
+     
+    for i, line in enumerate(block):
+        if extract_dates(line):
+            entry["dates"] = extract_dates(line)
+        cleaned_line = date_pattern.sub("", line).strip()
+        block[i] = cleaned_line if cleaned_line else ""
+        break
+    print (f"Processing block: {block}")
 
-        subsections = {}
-        current_sub = None
-        buffer = []
+    for i,line in enumerate(block):
+        title = find_job_title(line)
+        if title:
+            entry["position"] = title
+            del block[i]
+            break
+    
+    block = [line for line in block if line.strip()]
+    num_capitals = sum(1 for c in block[0] if c.isupper())
+    if num_capitals > 1 and not block[0].strip().startswith("-"):
+        entry["company"] = block[0]
+        del block[0]
+    
+    description_lines  = [line for line in block]
+    entry["description"] = [line.lstrip("-").strip() for line in description_lines]
 
-        i = 0 
-        while i < len(content):
-            line = content[i]
+    return entry if any(entry.values()) else None
 
-            if len(line) < 20 and (i+1) < len(content) and content[i+1].strip().startswith("-"):
-                if current_sub and buffer:
-                    subsections[current_sub] = buffer
-                    buffer = []
+    
+def parse_experience_block(lines):
+    parsed = []
+    block = []
 
-                current_sub = line.rstrip(":")
-                i += 1 
-                bullets = []
-                while i < len(content) and content[i].strip().startswith("-"):
-                    bullets.append(content[i].strip())
-                    i += 1
-                
-                subsections[current_sub] = bullets
-                continue
+    for line in lines + [""]:
+        is_new_block = find_job_title(line) or extract_dates(line)
+        if  is_new_block and block:
+            entry = process_block(block)
+            if entry:
+                parsed.append(entry)
+            block = []
+        block.append(line)
+        
+    if block:
+        entry = process_block(block)
+        if entry:
+            parsed.append(entry)
 
-            elif len(line) < 25 and not line.startswith("-") and line.upper() not in known_subsections:
-                if current_sub and buffer:
-                    subsections[current_sub] = buffer
-                    buffer = []
+    return parsed 
 
-                current_sub = line
-                i += 1
-                continue
+print(">> BEFORE PARSING EXPERIENCE BLOCK")
+print("TYPE:", type(refined_sectionned_lines["EXPERIENCE"]["UNKNOWN"]))
+print("CONTENT:")
+for item in refined_sectionned_lines["EXPERIENCE"]["UNKNOWN"]:
+    print(item)
+    
+refined_sectionned_lines["EXPERIENCE"]["UNKNOWN"] = parse_experience_block(refined_sectionned_lines["EXPERIENCE"]["UNKNOWN"])
 
-            elif is_title(line) and line.upper() not in known_subsections:
-                if buffer and current_sub:
-                    subsections[current_sub] = buffer
-                    buffer = []
-                
-                current_sub = line
-                i += 1 
-                continue
-
-            elif is_title(line) and line.upper() in known_subsections:
-                break
-
-                # while i < len(content) and content[i] not in known_subsections:
-                #     if is_title(content[i]):
-                #         if buffer and current_sub:
-                #             subsections[current_sub] = buffer
-                #             buffer = []
-                #             current_sub = content[i]
-                #             continue
-                #     else:
-                #         buffer.append(content[i])
-                #     i += 1 
-                #     subsections[current_sub] = buffer
-                #     buffer = []
-                #     continue
-            else:
-                if is_title(line) and line.upper() not in known_subsections:
-                    if current_sub and buffer:
-                        subsections[current_sub] = buffer
-                        buffer = []
-                    current_sub = line
-                    i += 1
-                else:
-                    buffer.append(line)
-                    i += 1
-                    
-        if current_sub and buffer:
-            subsections[current_sub] = buffer
-            
-        refined_subsections[section] = subsections if subsections else content
-    return refined_subsections
-
-refined_sectionned_lines = extract_subsections(sectionned_lines)
-
-i=0 
+i = 0
 for section, content in refined_sectionned_lines.items():
     i += 1
     print(f"\n{section.upper()} {i}")
+
     if isinstance(content, dict):
         for sub, lines in content.items():
-            print(f"  {sub}: {i}")
-            for line in lines:
-                print(f"    {line}")
+            print(f"  {sub}:")
+            if isinstance(lines, list):
+                for item in lines:
+                    if isinstance(item, str):
+                        print(f"    {item}")
+                    elif isinstance(item, dict):
+                        for key, val in item.items():
+                            if isinstance(val, dict):
+                                print(f"    {key}:")
+                                for k, v in val.items():
+                                    print(f"      {k}: {v}")
+                            else:
+                                print(f"    {key}: {val}")
+                    else:
+                        print(f"    {item}")
+            else:
+                print(f"    {lines}")
+
     elif isinstance(content, list):
         for line in content:
-            print(f"  {line}")
+            if isinstance(line, str):
+                print(f"  {line}")
+            elif isinstance(line, dict):
+                for key, val in line.items():
+                    print(f"  {key}: {val}")
+            else:
+                print(f"  {line}")
+
     else:
         print(f"  {content}")
