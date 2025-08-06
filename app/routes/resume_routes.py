@@ -1,4 +1,7 @@
 from services.resume_pipeline_service import process_resume_pipeline
+from flask import Blueprint
+
+transcription_bp = Blueprint('resume_bp', __name__)
 
 @app.route("/upload_resume", methods=["POST"])
 def upload_resume():
