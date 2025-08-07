@@ -3,6 +3,8 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { AuthComponent } from './pages/auth/auth.component';
 import { LandingLayoutComponent } from './layout/landing-layout/landing-layout.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { ChatbotComponent } from './pages/chatbot/chatbot.component';
+import { UploadResumeComponent } from './pages/upload-resume/upload-resume.component';
 
 export const routes: Routes = [
 { path: 'auth', component: AuthComponent },
@@ -19,7 +21,8 @@ children: [
 path: 'Home',
 component: MainLayoutComponent,
 children: [
-
+{ path: 'chatbot', component: ChatbotComponent },
+{ path: 'upload-resume', component: UploadResumeComponent },
 ]
 },
 

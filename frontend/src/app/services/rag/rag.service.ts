@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-interface RagRequest {
+export interface RagRequest {
 query: string;
 }
 
-interface RagResponse {
+export interface RagResponse {
 answer: string;
 error?: string;
 }
 
 @Injectable({
-providedIn: 'root'
+providedIn: 'root',
 })
 export class RagService {
-private apiUrl = 'http://localhost:5000/ask'; // adjust base URL accordingly
+private apiUrl = 'http://localhost:5000/ask';
 
 constructor(private http: HttpClient) {}
 

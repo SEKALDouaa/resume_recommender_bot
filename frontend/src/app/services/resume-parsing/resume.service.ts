@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpEventType, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-interface ResumeResponse {
+export interface ResumeResponse {
 message: string;
 resume_id: string;
 error?: string;
 }
 
 @Injectable({
-providedIn: 'root'
+providedIn: 'root',
 })
 export class ResumeService {
-private apiUrl = 'http://localhost:5000/process-resume'; // adjust base URL accordingly
+private apiUrl = 'http://localhost:5000/process-resume';
 
 constructor(private http: HttpClient) {}
 

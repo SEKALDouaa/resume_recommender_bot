@@ -4,6 +4,7 @@
   <button (click)="toggleSidebar()" class="toggle-btn" style="z-index: 2000; position: relative;">
     <i class="bi" [ngClass]="isSidebarCollapsed ? 'bi-arrow-right' : 'bi-arrow-left'"></i>
   </button>
+
   <ul class="nav flex-column flex-grow-1">
     <li class="nav-item">
       <a class="nav-link" routerLink="/Home/dashboard">
@@ -12,27 +13,21 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/Home/pv-form">
-        <i class="bi bi-mic me-2"></i>
-        <span class="link-text">Transcription</span>
+      <a class="nav-link" routerLink="/Home/chatbot">
+        <i class="bi bi-chat-dots me-2"></i>
+        <span class="link-text">Assistant</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/Home/transcriptions-list">
-        <i class="bi bi-archive me-2"></i>
-        <span class="link-text">Transcriptions passées</span>
+      <a class="nav-link" routerLink="/Home/upload-resume">
+        <i class="bi bi-upload me-2"></i>
+        <span class="link-text">Uploader un CV</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/Home/pv-list">
-        <i class="bi bi-file-earmark-text me-2"></i>
-        <span class="link-text">PVs</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/Home/analysis-list">
-        <i class="bi bi-graph-up-arrow me-2"></i>
-        <span class="link-text">Analyses</span>
+      <a class="nav-link" routerLink="/Home/my-resumes">
+        <i class="bi bi-folder2-open me-2"></i>
+        <span class="link-text">Mes CVs</span>
       </a>
     </li>
   </ul>
@@ -40,7 +35,7 @@
   <!-- Push logout to bottom -->
   <div class="mt-auto">
     <a class="nav-link logout-link" (click)="logout()">
-    <i class="bi bi-box-arrow-right me-2"></i>
+      <i class="bi bi-box-arrow-right me-2"></i>
       <span class="link-text">Déconnexion</span>
     </a>
   </div>

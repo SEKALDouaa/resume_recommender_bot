@@ -1,0 +1,23 @@
+<div class="chat-container container py-4">
+  <h2 class="mb-4 text-white">Assistant CV</h2>
+  <div class="chat-box bg-dark p-3 rounded mb-3">
+    <div *ngFor="let msg of messages" class="mb-2">
+      <div [ngClass]="msg.sender === 'user' ? 'text-end' : 'text-start'">
+        <span [ngClass]="{
+          'bg-primary text-white': msg.sender === 'user',
+          'bg-secondary text-white': msg.sender === 'bot'
+        }" class="d-inline-block p-2 rounded">
+          {{ msg.text }}
+        </span>
+      </div>
+    </div>
+    <div *ngIf="isLoading" class="text-center text-white">
+      <div class="spinner-border spinner-border-sm" role="status"></div> Chargement...
+    </div>
+  </div>
+
+  <form (submit)="sendMessage(); $event.preventDefault();" class="d-flex">
+    <input [(ngModel)]="userMessage" name="message" class="form-control me-2" placeholder="Posez votre question..." />
+    <button class="btn btn-outline-light" type="submit">Envoyer</button>
+  </form>
+</div>
