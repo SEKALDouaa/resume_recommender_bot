@@ -1,6 +1,6 @@
 .sidebar {
-  background-color: #423629;
-  color: #E3D6C8;
+  background-color: #1E1E1E; /* Deep Charcoal Gray */
+  color: #F5F5F5;            /* Soft White */
   width: 250px;
   transition: width 0.3s;
   overflow-x: hidden;
@@ -11,7 +11,7 @@
 }
 
 .sidebar .nav-link {
-  color: #E3D6C8;
+  color: #F5F5F5;            /* Soft White */
   padding: 10px;
   display: flex;
   align-items: center;
@@ -22,8 +22,8 @@
 
 .sidebar .nav-link:hover,
 .sidebar .nav-link.active {
-  background-color: #BC9D7E !important;
-  color: white !important;
+  background-color: #4B286D !important; /* DXC Purple */
+  color: #F5F5F5 !important;            /* Soft White */
   border-radius: 8px;
 }
 
@@ -40,15 +40,15 @@
 }
 
 .sidebar .logout-link {
-  color: #ff4d4d;
-  border-top: 1px solid #7B3131;
+  color: #A3A3A3;               /* Cool Gray */
+  border-top: 1px solid #4B286D; /* DXC Purple border */
 }
 
 .toggle-btn {
   background: transparent;
   border: none;
-  color: #E3D6C8; /* Light beige from your palette */
-  font-size: 1.25rem; /* Slightly bigger icon */
+  color: #F5F5F5; /* Soft White */
+  font-size: 1.25rem;
   align-self: end;
   margin-bottom: 1rem;
   padding: 0;
@@ -56,12 +56,12 @@
 }
 
 .toggle-btn:hover {
-  color: #BC9D7E; /* Highlight on hover */
+  color: #4B286D; /* DXC Purple */
 }
 
 /* Collapse-specific adjustments */
 .sidebar.collapsed {
-  width: 70px; /* Just enough for icons */
+  width: 70px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -76,13 +76,12 @@
   border-radius: 8px;
 }
 
-
 .sidebar.collapsed .nav-link .link-text {
   display: none;
 }
 
 .sidebar.collapsed .nav-link:hover {
-  background-color: #BC9D7E;
+  background-color: #4B286D;
   width: auto;
   border-radius: 8px;
 }

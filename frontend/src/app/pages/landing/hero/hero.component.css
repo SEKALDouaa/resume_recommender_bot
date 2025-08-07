@@ -6,37 +6,38 @@
   flex-wrap: wrap;
 }
 
-.hero-left, .hero-right {
+.hero-left,
+.hero-right {
   flex: 1 1 50%;
   height: 100%;
   padding: 2rem;
 }
 
 .hero-left {
-  background-color: #E3D6C8; /* Beige clair */
-  color: #423629;
+  background-color: #F5F5F5; /* Deep Charcoal Gray */
+  color: #F5F5F5; /* Soft White */
 }
 
 .hero-right {
-  background-color: #7B3131; /* Bordeaux */
+  background-color: #1E1E1E; /* DXC Purple */
 }
 
 .hero-logo {
   max-width: 250px;
   width: auto;
-  transform: scale(3);
+  transform: scale(2);
 }
 
 .hero-title {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #423629;
+  color: #1E1E1E; /* Soft White for strong contrast */
 }
 
 .hero-description {
   font-size: 1.2rem;
-  color: #7B3131;
+  color: #A3A3A3; /* Cool Gray for subtle emphasis */
 }
 
 /* Responsive */
@@ -45,7 +46,8 @@
     flex-direction: column;
   }
 
-  .hero-left, .hero-right {
+  .hero-left,
+  .hero-right {
     flex: 1 1 100%;
     text-align: center;
     padding: 2rem 1rem;

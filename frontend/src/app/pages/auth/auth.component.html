@@ -17,10 +17,10 @@
       role="button"
       tabindex="0"
       (click)="setLang('AR')"
-      [class.active]="currentLang === 'AR'"
+      [class.active]="currentLang === 'EN'"
       class="lang-option"
     >
-      AR
+      EN
     </span>
   </div>
 
@@ -88,13 +88,13 @@
   <!-- Toggle Panel -->
   <div class="toggle-box">
     <div class="toggle-panel toggle-left" *ngIf="!isRegisterMode">
-      <img src="assets/Images/Logo (1).svg" alt="Logo" class="logo" />
+      <img src="assets/Images/dxc_logo.svg" alt="Logo" class="logo" />
       <h1>Bon retour !</h1>
       <p>Première fois ici ? Inscrivez-vous maintenant.</p>
       <button class="btn btn-outline-light" (click)="toggleMode()">Inscription</button>
     </div>
     <div class="toggle-panel toggle-right" *ngIf="isRegisterMode">
-      <img src="assets/Images/Logo (1).svg" alt="Logo" class="logo" />
+      <img src="assets/Images/dxc_logo.svg" alt="Logo" class="logo" />
       <h1> Bienvenue !</h1>
       <p>Vous avez déjà un compte ?</p>
       <button class="btn btn-outline-light" (click)="toggleMode()">Connexion</button>

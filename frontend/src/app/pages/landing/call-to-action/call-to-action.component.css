@@ -1,7 +1,7 @@
 .cta-section {
-  background-color: #BC9D7E; /* Same tan as button hover */
-  border-top: 1px solid #7B3131; /* You can adjust border color for contrast */
-  color: #423629; /* Dark text for contrast */
+  background-color: #A3A3A3; /* Deep Charcoal Gray */
+  border-top: 1px solid #4B286D; /* DXC Purple for subtle branding */
+  color: #F5F5F5; /* Soft White text */
   min-height: 200px;
   display: flex;
   align-items: center;
@@ -9,16 +9,16 @@
 }
 
 .cta-section h2 {
-  color: #423629;
+  color: #F5F5F5; /* Soft White */
 }
 
 .cta-section .btn-primary {
-  background-color: #7B3131;
-  border-color: #423629;
-  color: #E3D6C8;
+  background-color: #4B286D; /* DXC Purple */
+  border-color: #4B286D;
+  color: #F5F5F5; /* Soft White */
 }
 
 .cta-section .btn:hover {
-  background-color: #423629;
-  color: white;
+  background-color: #1E1E1E; /* Cool Gray for hover effect */
+ /* Dark text on lighter button */
 }

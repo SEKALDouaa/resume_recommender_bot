@@ -1,29 +1,37 @@
 /* Navbar Base Styling */
 .navbar-logo {
-  max-height: 40px;
+  max-height: 22px;
   width: auto;
-  transform: scale(6); /* Reduce scale to avoid overlap */
+  transform: scale(2.5);
   transform-origin: left center;
   z-index: 1;
   position: relative;
+  margin-top: 4px; /* added a bit more top spacing */
+  margin-bottom: 4px;
+  margin-left: 6px;
 }
 
+
 .navbar {
-  background-color: #7B3131 !important;
+  background-color: #1E1E1E !important;
   position: sticky;
   top: 0;
   z-index: 100;
   overflow: visible; /* Allow dropdowns to overflow */
+  min-height: 60px; /* increased height */
+  padding-top: 0.75rem;  /* slightly more vertical padding */
+  padding-bottom: 0.75rem;
 }
 
 .navbar-toggler {
   z-index: 200;
   position: relative;
+  padding: 0.375rem 0.75rem; /* increased vertical padding */
 }
 
 .navbar .btn {
   color: #E3D6C8;
-  border-color: #E3D6C8;
+  border-color: #423629;
   transition: background-color 0.3s;
 }
 
@@ -262,10 +270,10 @@
 .lang-switch {
   display: flex;
   align-items: center;
-  background-color: #2c2c2c;
+  background-color: #4B286D;
   border-radius: 20px;
   padding: 4px 12px;
-  color: #BC9D7E;
+  color: #A3A3A3;
   font-size: 0.85rem;
   cursor: pointer;
   user-select: none;
@@ -278,18 +286,18 @@
 }
 
 .lang-switch .divider {
-  color: #BC9D7E;
+  color: #F5F5F5;
 }
 
 .lang-switch span.active {
-  color: #E3D6C8;
+  color: #F5F5F5;
   font-weight: bold;
 }
 
 /* Help Button Styling */
 .help-btn {
-  background-color: #2c2c2c;
-  color: #E3D6C8;
+  background-color: #A3A3A3;
+  color: #4B286D;
   border: none;
   border-radius: 50%;
   width: 36px;
@@ -345,20 +353,20 @@
   .search-container.expanded .search-input {
     width: 150px;
   }
-  
+
   .search-container {
     padding: 6px 12px;
   }
-  
+
   .search-result-item {
     padding: 10px 14px;
     font-size: 0.9rem;
   }
-  
+
   .navbar-logo {
     transform: scale(3);
   }
-  
+
   .d-flex.gap-3 {
     gap: 0.5rem !important;
   }
