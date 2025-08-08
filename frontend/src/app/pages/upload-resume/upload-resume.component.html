@@ -1,17 +1,28 @@
-<div class="upload-container container py-5 text-white">
-  <h2 class="mb-4">Uploader un CV</h2>
+<div class="upload-container container py-5">
+  <h2 class="upload-title mb-4">Uploader un CV</h2>
 
   <div class="mb-3">
-    <input type="file" (change)="onFileSelected($event)" class="form-control bg-dark text-white border-secondary" />
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      class="form-control upload-file-input"
+    />
   </div>
 
-  <button class="btn btn-outline-light" (click)="uploadResume()" [disabled]="isUploading || !selectedFile">
+  <button
+    class="btn btn-upload"
+    (click)="uploadResume()"
+    [disabled]="isUploading || !selectedFile"
+  >
     {{ isUploading ? 'Chargement...' : 'Uploader' }}
   </button>
 
-  <div *ngIf="uploadMessage" class="mt-3 alert"
-       [class.alert-success]="uploadMessage.startsWith('Succès')"
-       [class.alert-danger]="uploadMessage.startsWith('Erreur')">
+  <div
+    *ngIf="uploadMessage"
+    class="mt-3 alert"
+    [class.alert-success]="uploadMessage.startsWith('Succès')"
+    [class.alert-danger]="uploadMessage.startsWith('Erreur')"
+  >
     {{ uploadMessage }}
   </div>
 </div>

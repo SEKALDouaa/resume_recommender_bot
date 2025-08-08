@@ -2,8 +2,9 @@ from app.services.llm_service import llm
 from app.services.retrieval_service import retrieve_documents
 from langchain.chains import RetrievalQA
 from langchain.vectorstores.base import VectorStoreRetriever
+from langchain.schema import BaseRetriever
 
-class CustomRetriever(VectorStoreRetriever): #we "trick" langchain into using our method by wrapping our method in a class that implements the expected interface using our method
+class CustomRetriever(BaseRetriever): #we "trick" langchain into using our method by wrapping our method in a class that implements the expected interface using our method
     def get_relevant_documents(self, query: str):
         return retrieve_documents(query)
 

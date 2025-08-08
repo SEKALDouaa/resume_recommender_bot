@@ -1,6 +1,6 @@
 import uuid
 from typing import List, Dict, Any
-from utils import calculate_experience_years
+from ..utils.utils import calculate_experience_years
 
 def add_chunk(chunks, resume_id, text, section, image_url, extra_metadata=None):
     if not text.strip():

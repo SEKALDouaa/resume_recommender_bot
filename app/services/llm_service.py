@@ -3,6 +3,6 @@ from decouple import config
 
 llm = ChatGoogleGenerativeAI(
     model="models/gemini-1.5-flash-latest",
-    google_api_key=config("GOOGLE_API_KEY"),
+    google_api_key=config("GEMINI_API_KEY"),
     temperature=0.2
 )

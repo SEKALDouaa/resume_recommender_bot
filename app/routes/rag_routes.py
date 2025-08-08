@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.rag_service import generate_rag_response  # extract the RAG logic to qa_service.py
+from ..services.rag_service import generate_rag_response  # extract the RAG logic to qa_service.py
 
 qa_bp = Blueprint("qa_bp", __name__)
 

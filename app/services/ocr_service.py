@@ -7,4 +7,4 @@ ocr_agent = lp.TesseractAgent(languages="eng")
 
 def extract_text_from_image(image_path: str) -> str:
     image = Image.open(image_path)
-    return ocr_agent.detect(image).text
+    return ocr_agent.detect(image)

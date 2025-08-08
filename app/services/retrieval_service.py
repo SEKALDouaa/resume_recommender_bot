@@ -6,8 +6,11 @@ def retrieve_documents(query: str, k=5):
     query_embedding = embed_query(query)
     raw_results = query_vectorstore(query_embedding, k)
 
-    docs = [
-        Document(page_content=text, metadata=metadata)
-        for text, metadata in raw_results
-    ]
+    docs = []
+    for text, metadata in raw_results:
+        # Add image URL if resume_id is present in metadata
+        if "resume_id" in metadata:
+            metadata["image_url"] = f"/resume_image/{metadata['resume_id']}"
+        docs.append(Document(page_content=text, metadata=metadata))
+
     return docs

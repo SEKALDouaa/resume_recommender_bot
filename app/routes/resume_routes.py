@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
-from services.resume_pipeline_service import process_resume_pipeline  # put the full pipeline in resume_pipeline.py
+from ..services.resume_pipeline_service import process_resume_pipeline  # put the full pipeline in resume_pipeline.py
+import traceback
 
 resume_bp = Blueprint("resume", __name__)
 
@@ -18,4 +19,6 @@ def process_resume():
         resume_id = process_resume_pipeline(image_path, resume_image_url=image_url)
         return jsonify({"message": "Resume processed successfully", "resume_id": resume_id})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+         tb = traceback.format_exc()
+         print(tb)
+         return jsonify({"error": str(e), "traceback": tb}), 500
