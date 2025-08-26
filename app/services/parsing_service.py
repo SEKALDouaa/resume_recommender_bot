@@ -44,10 +44,20 @@ def order_resume_into_dictionary_LLM(raw_text: str):
     - If an end date is missing or the job is ongoing, use `"end month": ""` and `"end year": "Present"`.
     - Remove all newline characters (`\\n`) **inside** text values by replacing them with a single space, so that sentences and bullet points are continuous and clean.
     - Preserve line breaks only between list items or sections, but do not include `\\n` inside individual strings.
+    - ONLY output a single Python dictionary literal. Do NOT include any code, functions, explanations, or comments.
     Here is the resume text:
     {raw_text}
     """
     response = model.generate_content(prompt)
+    
+    # Clean triple backticks and whitespace
     text = re.sub(r"^```(?:python)?\s*", "", response.text.strip(), flags=re.IGNORECASE)
     text = re.sub(r"\s*```$", "", text)
+
+    # Remove variable assignment if present, e.g. "resume_data = {...}"
+    match = re.match(r'^\s*\w+\s*=\s*(\{.*\})\s*$', text, re.DOTALL)
+    if match:
+        text = match.group(1)
+
+    # Now safely parse dictionary literal
     return ast.literal_eval(text.strip())

@@ -1,10 +1,18 @@
 <div class="chat-container">
   <h2 class="chat-title">Assistant CV</h2>
+
   <div class="chat-box" id="chatBox">
     <div *ngFor="let msg of messages" class="chat-message" [ngClass]="msg.sender === 'user' ? 'user-msg' : 'bot-msg'">
-      <div class="message-bubble">
-        {{ msg.text }}
+
+      <div class="message-wrapper">
+        <div class="message-bubble" [innerHTML]="msg.text"></div>
+
+        <div *ngIf="msg.imageUrls?.length" class="message-image-column">
+          <img *ngFor="let img of msg.imageUrls" [src]="img" alt="Resume image"
+               class="message-image" (click)="openImageModal(img)" />
+        </div>
       </div>
+
     </div>
 
     <div *ngIf="isLoading" class="loading-indicator">
@@ -16,4 +24,12 @@
     <input [(ngModel)]="userMessage" name="message" placeholder="Posez votre question..." autocomplete="off" />
     <button type="submit" aria-label="Send message">Envoyer</button>
   </form>
+
+  <!-- Modal -->
+  <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <img [src]="modalImageUrl" alt="Resume full view" />
+      <button class="close-button" (click)="closeModal()">×</button>
+    </div>
+  </div>
 </div>

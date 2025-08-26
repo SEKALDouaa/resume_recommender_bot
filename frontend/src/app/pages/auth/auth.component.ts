@@ -64,7 +64,7 @@ constructor(
       console.log('Token in sessionStorage now:', sessionStorage.getItem('access_token'));  // Should show token here
       const tokenFromService = this.storageService.get('access_token');
       console.log('Token from service.get():', tokenFromService);  // Should also show token here
-      this.router.navigate(['/Home/dashboard']);
+      this.router.navigate(['/Home/upload-resume']);
     },
     error: (err) => {
       this.toastr.error(err.error?.error || 'Login failed');
@@ -77,7 +77,7 @@ constructor(
     this.authService.register(this.registerForm.value).subscribe({
       next: () => {
         this.toastr.success('Account created successfully! Please log in.');
-        
+
 
         this.isRegisterMode = false; // Switch to login view
         this.registerForm.reset(); // Clear the form fields

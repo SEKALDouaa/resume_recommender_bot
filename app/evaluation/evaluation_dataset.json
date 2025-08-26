@@ -1,0 +1,107 @@
+[
+  {
+    "query": "Senior Teradata Database Administrator with AWS and RedHat experience",
+    "correct_resumes": ["ddba0abe-84ae-465e-ba41-c834015f0abe"],
+    "required_keywords": ["teradata", "redhat", "aws"],
+    "optional_keywords": ["ec2", "linux", "automation", "performance"],
+    "ideal_answer": "Helena Feeney, Senior Teradata DBA at O'Reilly LLC, working with AWS EC2 on RedHat servers and automating database tasks."
+  },
+  {
+    "query": "Database Administrator skilled in Docker, Kubernetes, and SQL",
+    "correct_resumes": ["ddba0abe-84ae-465e-ba41-c834015f0abe"],
+    "required_keywords": ["docker", "kubernetes", "sql"],
+    "optional_keywords": ["git", "puppet", "automation"],
+    "ideal_answer": "Helena Feeney, IT DBA with experience in Docker, Kubernetes, and SQL at Barton, Bayer and Lind."
+  },
+  {
+    "query": "Experienced DBA with Python or Java background",
+    "correct_resumes": ["ddba0abe-84ae-465e-ba41-c834015f0abe"],
+    "required_keywords": ["database administrator", "python", "java"],
+    "optional_keywords": ["linux", "weblogic", "performance tuning"],
+    "ideal_answer": "Helena Feeney, IT DBA at Barton, Bayer and Lind with Python/Java programming experience alongside database administration."
+  },
+  {
+    "query": "IT Database Administrator with strong system administration and RDBMS knowledge",
+    "correct_resumes": ["ddba0abe-84ae-465e-ba41-c834015f0abe"],
+    "required_keywords": ["database administrator", "system administration", "rdbms"],
+    "optional_keywords": ["tcp/ip", "dns", "load balancing"],
+    "ideal_answer": "Helena Feeney, IT DBA with Linux system administration and deep RDBMS knowledge."
+  },
+  {
+    "query": "Database expert with Salesforce and Eloqua integration experience",
+    "correct_resumes": ["ddba0abe-84ae-465e-ba41-c834015f0abe"],
+    "required_keywords": ["salesforce", "eloqua", "database"],
+    "optional_keywords": ["data profiling", "marketing capabilities"],
+    "ideal_answer": "Helena Feeney, who worked with Salesforce and Eloqua during her database management role at Barton, Bayer and Lind."
+  },
+  {
+    "query": "Database Management Lead experienced in SQL and HTML",
+    "correct_resumes": ["a11c47d5-97ee-41a0-99f3-a802bc9e811e"],
+    "required_keywords": ["database management lead", "sql", "html"],
+    "optional_keywords": ["crm", "eloqua", "salesforce"],
+    "ideal_answer": "Terrance Wunsch, Database Management Lead since 2015 with SQL and HTML expertise."
+  },
+  {
+    "query": "Clinical database manager with SOP and capacity planning experience",
+    "correct_resumes": ["a11c47d5-97ee-41a0-99f3-a802bc9e811e"],
+    "required_keywords": ["clinical database", "sop", "capacity planning"],
+    "optional_keywords": ["performance tuning", "root cause analysis"],
+    "ideal_answer": "Terrance Wunsch, Manager of Clinical Database Management (2012–2015), with SOP creation and capacity planning experience."
+  },
+  {
+    "query": "Database professional skilled in Salesforce and Excel pivot tables",
+    "correct_resumes": ["a11c47d5-97ee-41a0-99f3-a802bc9e811e"],
+    "required_keywords": ["salesforce", "excel pivot tables"],
+    "optional_keywords": ["access", "powerpoint", "word"],
+    "ideal_answer": "Terrance Wunsch, Database Management Lead with Salesforce and advanced Excel skills."
+  },
+  {
+    "query": "Leader in database standards and application performance optimization",
+    "correct_resumes": ["a11c47d5-97ee-41a0-99f3-a802bc9e811e"],
+    "required_keywords": ["database standards", "performance optimization"],
+    "optional_keywords": ["root cause analysis", "change management"],
+    "ideal_answer": "Terrance Wunsch, who worked to develop database standards and optimize application/database performance."
+  },
+  {
+    "query": "Database Management professional with experience in reporting and metadata changes",
+    "correct_resumes": ["a11c47d5-97ee-41a0-99f3-a802bc9e811e"],
+    "required_keywords": ["database management", "reporting", "metadata"],
+    "optional_keywords": ["change management", "workflow"],
+    "ideal_answer": "Terrance Wunsch, who developed reports and managed metadata during his database management career."
+  },
+  {
+    "query": "Senior AWS DevOps Engineer with 5 years at United Nations",
+    "correct_resumes": ["f490222b-45d1-4892-8ca9-26f1e7c24977"],
+    "required_keywords": ["aws", "devops", "united nations"],
+    "optional_keywords": ["cloud migration", "ubuntu", "redhat", "aix"],
+    "ideal_answer": "Robert Smith, Sr. AWS DevOps Engineer at United Nations (2015–2020)."
+  },
+  {
+    "query": "DevOps Engineer experienced in Git, Bitbucket, and TFS administration",
+    "correct_resumes": ["f490222b-45d1-4892-8ca9-26f1e7c24977"],
+    "required_keywords": ["git", "bitbucket", "tfs"],
+    "optional_keywords": ["repositories", "access control", "branches"],
+    "ideal_answer": "Robert Smith, who managed Git/Bitbucket/TFS repositories and access control strategies."
+  },
+  {
+    "query": "Engineer with strong Linux and Windows administration for cloud environments",
+    "correct_resumes": ["f490222b-45d1-4892-8ca9-26f1e7c24977"],
+    "required_keywords": ["linux", "windows", "cloud"],
+    "optional_keywords": ["ubuntu", "redhat", "aix", "aws"],
+    "ideal_answer": "Robert Smith, DevOps engineer with Linux/Windows expertise and AWS cloud deployment."
+  },
+  {
+    "query": "DevOps professional focused on CI/CD, release management, and automation",
+    "correct_resumes": ["f490222b-45d1-4892-8ca9-26f1e7c24977"],
+    "required_keywords": ["release management", "automation", "ci/cd"],
+    "optional_keywords": ["git", "branching", "merge conflicts"],
+    "ideal_answer": "Robert Smith, who developed software release management procedures and automated builds."
+  },
+  {
+    "query": "Cloud migration specialist with experience moving physical servers to AWS",
+    "correct_resumes": ["f490222b-45d1-4892-8ca9-26f1e7c24977"],
+    "required_keywords": ["cloud migration", "aws"],
+    "optional_keywords": ["linux", "windows servers"],
+    "ideal_answer": "Robert Smith, who migrated Linux/Windows servers to AWS during his tenure at the United Nations."
+  }
+]

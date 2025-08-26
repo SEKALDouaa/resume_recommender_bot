@@ -8,7 +8,7 @@ import { StorageService } from '../storage/storage.service';  // Assure-toi du b
 providedIn: 'root'
 })
 export class AuthService {
-private baseUrl = 'http://localhost:5000/api';
+private baseUrl = 'http://localhost:5000/user';
 
 constructor(
     private http: HttpClient,

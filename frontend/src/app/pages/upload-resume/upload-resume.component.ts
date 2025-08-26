@@ -10,26 +10,26 @@ templateUrl: './upload-resume.component.html',
 styleUrls: ['./upload-resume.component.css']
 })
 export class UploadResumeComponent {
-selectedFile: File | null = null;
+selectedFiles: File[] = [];
 uploadMessage = '';
 isUploading = false;
 
 constructor(private resumeService: ResumeService) {}
 
-  onFileSelected(event: Event) {
+  onFilesSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
-      this.selectedFile = input.files[0];
+      this.selectedFiles = Array.from(input.files);
     }
   }
 
-  uploadResume() {
-    if (!this.selectedFile) return;
+  uploadResumes() {
+    if (!this.selectedFiles.length) return;
 
     this.uploadMessage = '';
     this.isUploading = true;
 
-    this.resumeService.processResume(this.selectedFile).subscribe({
+    this.resumeService.processResumes(this.selectedFiles).subscribe({
       next: (res) => {
         this.uploadMessage = `Succès: ${res.message}`;
         this.isUploading = false;

@@ -1,18 +1,19 @@
 <div class="upload-container container py-5">
-  <h2 class="upload-title mb-4">Uploader un CV</h2>
+  <h2 class="upload-title mb-4">Uploader des CVs</h2>
 
   <div class="mb-3">
     <input
       type="file"
-      (change)="onFileSelected($event)"
+      (change)="onFilesSelected($event)"
       class="form-control upload-file-input"
+      multiple
     />
   </div>
 
   <button
     class="btn btn-upload"
-    (click)="uploadResume()"
-    [disabled]="isUploading || !selectedFile"
+    (click)="uploadResumes()"
+    [disabled]="isUploading || !selectedFiles.length"
   >
     {{ isUploading ? 'Chargement...' : 'Uploader' }}
   </button>

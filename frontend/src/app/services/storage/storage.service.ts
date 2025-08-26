@@ -29,4 +29,9 @@ export class StorageService {
       sessionStorage.clear();
     }
   }
+
+  getToken(): string | null {
+  return this.get('access_token');
+  }
+
 }

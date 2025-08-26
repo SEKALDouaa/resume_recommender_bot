@@ -1,0 +1,39 @@
+<div class="upload-container">
+  <h2 class="upload-title">Galerie des CVs</h2>
+
+  <div *ngIf="isLoading" class="alert alert-success">
+    Chargement des CVs...
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!isLoading && !error && images.length === 0" class="alert alert-success">
+    Aucun CV trouvé.
+  </div>
+
+  <div class="gallery-grid">
+    <div *ngFor="let image of images" class="gallery-item">
+      <img
+        [src]="image.src"
+        alt="CV Image {{ image.index }}"
+        (click)="openImage(image.src)"
+        class="clickable-image"
+      />
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div
+    class="modal-overlay"
+    *ngIf="selectedImage"
+    (click)="closeModal()"
+    tabindex="0"
+  >
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()">×</button>
+      <img [src]="selectedImage" alt="CV Image enlarged" />
+    </div>
+  </div>
+</div>

@@ -16,3 +16,7 @@ def save_resume_image(resume_id: str, image_path: str):
 
 def get_resume_image(resume_id: str):
     return Resume.query.get(resume_id)
+
+def get_all_resume_images():
+    resumes = Resume.query.with_entities(Resume.image_data).all()
+    return [image_data for (image_data,) in resumes]
