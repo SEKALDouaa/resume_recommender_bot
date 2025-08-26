@@ -1,5 +1,4 @@
 
-```markdown
 # Resume Recommender Bot
 
 This project is a **chatbot system** designed to retrieve the most relevant resumes from a database based on user queries. It leverages **LangChain**, **ChromaDB** for vector storage, **SQLite** for relational data, and **Marshmallow** for serialization. The system combines a **Flask backend** and an **Angular frontend** to provide an interactive user experience.
